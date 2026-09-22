@@ -1,0 +1,8 @@
+{
+  "name": "نظام إدارة الأقساط والقروض النقدية",
+  "description": "نظام احترافي لإدارة وتتبع مبيعات التقسيط والقروض النقدية مع سجل العمليات المحاسبية ودعم الشبكة المحلية LAN",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
