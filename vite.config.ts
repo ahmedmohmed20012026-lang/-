@@ -2,10 +2,50 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
+import {VitePWA} from 'vite-plugin-pwa';
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(),
+      tailwindcss(),
+      VitePWA({
+        registerType: 'autoUpdate',
+        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'icon.svg'],
+        manifest: {
+          id: '/',
+          name: 'إدارة المخبز المحلي - نظام المبيعات والتراخيص',
+          short_name: 'إدارة المخبز',
+          description: 'نظام إدارة المخبز المحلي: المبيعات، اشتراكات الطحين، الديون، والمصاريف مع التفعيل التجاري',
+          theme_color: '#d97706',
+          background_color: '#f5f5f4',
+          display: 'standalone',
+          start_url: '/',
+          scope: '/',
+          icons: [
+            {
+              src: '/pwa-192x192.png',
+              sizes: '192x192',
+              type: 'image/png',
+              purpose: 'any',
+            },
+            {
+              src: '/pwa-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'any',
+            },
+          ],
+        },
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
+        },
+        devOptions: {
+          enabled: true,
+          type: 'module',
+        },
+      }),
+    ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
@@ -13,16 +53,10 @@ export default defineConfig(() => {
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+      // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
       // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
-      // IMPORTANT: 'data/**' must stay ignored here. The backend (server.ts) writes
-      // the live database to data/database.json on every action (payments, new
-      // customers, new contracts, settings...). Without this exclusion, Vite's
-      // watcher detects that write and forces a full browser page reload right
-      // after every successful action, which resets the SPA's in-memory
-      // activeTab state back to 'dashboard'.
-      watch: process.env.DISABLE_HMR === 'true' ? null : { ignored: ['**/data/**'] },
+      watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
   };
 });

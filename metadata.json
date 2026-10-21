@@ -1,8 +1,6 @@
 {
-  "name": "نظام إدارة الأقساط والقروض النقدية",
-  "description": "نظام احترافي لإدارة وتتبع مبيعات التقسيط والقروض النقدية مع سجل العمليات المحاسبية ودعم الشبكة المحلية LAN",
+  "name": "إدارة المخبز المحلي",
+  "description": "نظام محلي متكامل وشامل لإدارة المخبز: مبيعات نقدية وبالدين، اشتراكات الطحين وأرصدة الخبز، ديون وتحصيلات، مصاريف وأرباح، نسخ احتياطي، ونظام تفعيل تجاري غير متصل بالإنترنت.",
   "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
